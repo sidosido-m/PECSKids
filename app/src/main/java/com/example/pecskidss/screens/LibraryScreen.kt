@@ -94,6 +94,12 @@ fun LibraryScreen(viewModel: PecsViewModel) {
             Button(onClick = { selectedCategory = "Actions" }) {
                 Text("Actions")
             }
+            Button(onClick = { selectedCategory = "Sentiments" }) {
+                Text("Sentiments")
+            }
+            Button(onClick = { selectedCategory = "Famille" }) {
+                Text("Famille")
+            }
         }
 
         Spacer(modifier = Modifier.height(10.dp))

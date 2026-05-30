@@ -9,4 +9,5 @@ sealed class Screen(val route: String) {
     object FixedBoard : Screen("fixed_board")
     object Manage : Screen("manage")
     object Splash : Screen("splash")
+    object History : Screen("history")
 }

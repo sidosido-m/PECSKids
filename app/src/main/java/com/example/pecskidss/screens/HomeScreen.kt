@@ -56,6 +56,10 @@ fun HomeScreen(navController: NavController) {
             navController.navigate(Screen.Settings.route)
         }
 
+        LargeButton("Historique", PrimaryGreen) {
+            navController.navigate(Screen.History.route)
+        }
+
         LargeButton("Gestion", BlueGray) {
             navController.navigate(Screen.Manage.route)
         }

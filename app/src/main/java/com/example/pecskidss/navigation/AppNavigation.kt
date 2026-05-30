@@ -55,5 +55,9 @@ fun AppNavigation() {
         composable(Screen.Manage.route) {
             GestionPictogramScreen(viewModel)
         }
+        // 🟢 History
+        composable(Screen.History.route) {
+            HistoriqueScreen(viewModel)
+        }
     }
 }

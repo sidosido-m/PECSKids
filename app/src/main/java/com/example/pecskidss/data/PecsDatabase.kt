@@ -6,13 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [PictogramEntity::class],
-    version = 1,
+    entities = [
+        PictogramEntity::class,
+        CommunicationHistory::class
+    ],
+    version = 2,
     exportSchema = false
 )
 abstract class PecsDatabase : RoomDatabase() {
 
     abstract fun pictogramDao(): PictogramDao
+
+    abstract fun historyDao(): HistoryDao
 
     companion object {
 

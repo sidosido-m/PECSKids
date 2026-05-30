@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.flow.first
+import com.example.pecskidss.data.CommunicationHistory
 
 
 class PecsViewModel(application: Application) : AndroidViewModel(application) {
@@ -22,6 +23,18 @@ class PecsViewModel(application: Application) : AndroidViewModel(application) {
     private val dao = PecsDatabase
         .getDatabase(application)
         .pictogramDao()
+
+    private val historyDao = PecsDatabase
+        .getDatabase(application)
+        .historyDao()
+
+    val history =
+        historyDao.getAllHistory()
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(5000),
+                emptyList()
+            )
 
     fun addPictogramOnce(name: String, category: String, imageRes: Int) {
         viewModelScope.launch {
@@ -96,7 +109,17 @@ class PecsViewModel(application: Application) : AndroidViewModel(application) {
                 Triple("Pain", "Nourriture", R.drawable.pain),
                 Triple("Pomme", "Nourriture", R.drawable.pomme),
                 Triple("Jouer", "Actions", R.drawable.jouer),
-                Triple("Lait", "Boissons", R.drawable.lait)
+                Triple("Lait", "Boissons", R.drawable.lait),
+
+                Triple("Heureux", "Sentiments", R.drawable.heureux),
+                Triple("Triste", "Sentiments", R.drawable.triste),
+                Triple("En colère", "Sentiments", R.drawable.colere),
+                Triple("Fatigué", "Sentiments", R.drawable.fatigue),
+
+                Triple("Maman", "Famille", R.drawable.maman),
+                Triple("Papa", "Famille", R.drawable.papa),
+                Triple("Frère", "Famille", R.drawable.frere),
+                Triple("Sœur", "Famille", R.drawable.soeur)
             )
 
             defaults.forEach { (name, cat, img) ->
@@ -142,11 +165,21 @@ class PecsViewModel(application: Application) : AndroidViewModel(application) {
 
     // 🔊 SPEAK (PECS FINAL FEATURE)
     fun speakSentence() {
+
         if (!voiceEnabled.value) return
 
         val sentence = getSentence()
 
         if (sentence.isNotBlank()) {
+
+            viewModelScope.launch {
+                historyDao.insert(
+                    CommunicationHistory(
+                        sentence = sentence
+                    )
+                )
+            }
+
             tts?.speak(
                 sentence,
                 TextToSpeech.QUEUE_FLUSH,
