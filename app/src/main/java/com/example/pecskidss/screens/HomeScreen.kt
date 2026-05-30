@@ -13,6 +13,8 @@ import androidx.navigation.NavController
 import com.example.pecskidss.navigation.Screen
 import com.example.pecskidss.ui.components.LargeButton
 import com.example.pecskidss.ui.theme.*
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
 
 
 @Composable
@@ -26,6 +28,14 @@ fun HomeScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Image(
+            painter = painterResource(R.drawable.logo_pecs),
+            contentDescription = "Logo PECS",
+            modifier = Modifier.size(180.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "PECS Kids",

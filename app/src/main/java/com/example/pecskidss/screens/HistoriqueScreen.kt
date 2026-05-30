@@ -5,12 +5,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
+
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.example.pecskidss.viewmodel.PecsViewModel
+import androidx.compose.material3.Button
 
 @Composable
 fun HistoriqueScreen(viewModel: PecsViewModel) {
@@ -27,6 +32,17 @@ fun HistoriqueScreen(viewModel: PecsViewModel) {
             text = "Historique",
             fontSize = 28.sp
         )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+            onClick = {
+                viewModel.clearHistory()
+            }
+        ) {
+            Text("Supprimer l'historique")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Spacer(modifier = Modifier.height(16.dp))
 

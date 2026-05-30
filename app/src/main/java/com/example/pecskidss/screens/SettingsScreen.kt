@@ -53,7 +53,7 @@ fun SettingsScreen(viewModel: PecsViewModel) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("🧠 Ajouter 'Je veux'", modifier = Modifier.weight(1f))
+            Text("🧠 Ajouter les phrases automatiques", modifier = Modifier.weight(1f))
 
             Switch(
                 checked = addJeVeux,

@@ -27,7 +27,23 @@ fun FixedBoardScreen() {
         FixedItem("Pain", R.drawable.pain),
         FixedItem("Pomme", R.drawable.pomme),
         FixedItem("Jouer", R.drawable.jouer),
-        FixedItem("Lait",  R.drawable.lait)
+        FixedItem("Sports", R.drawable.sports),
+        FixedItem("Lait",  R.drawable.lait),
+        FixedItem("Maman", R.drawable.maman),
+        FixedItem("Papa", R.drawable.papa),
+        FixedItem("Frère", R.drawable.frere),
+        FixedItem("Sœur",  R.drawable.soeur),
+        FixedItem("Heureux", R.drawable.heureux),
+        FixedItem("Triste", R.drawable.triste),
+        FixedItem("En colère", R.drawable.colere),
+        FixedItem("Fatigué",  R.drawable.fatigue),
+        FixedItem("Jus",  R.drawable.jus),
+        FixedItem("Boissons",  R.drawable.boissons),
+        FixedItem("Cafe",  R.drawable.cafe),
+        FixedItem("Grand-Pére",  R.drawable.grand_pere),
+        FixedItem("Grand-Mére",  R.drawable.grand_mere),
+
+
     )
 
     Column(

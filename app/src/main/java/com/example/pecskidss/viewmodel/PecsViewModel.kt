@@ -109,7 +109,11 @@ class PecsViewModel(application: Application) : AndroidViewModel(application) {
                 Triple("Pain", "Nourriture", R.drawable.pain),
                 Triple("Pomme", "Nourriture", R.drawable.pomme),
                 Triple("Jouer", "Actions", R.drawable.jouer),
+                Triple("Sports", "Actions", R.drawable.sports),
                 Triple("Lait", "Boissons", R.drawable.lait),
+                Triple("Jus", "Boissons", R.drawable.jus),
+                Triple("Boissons", "Boissons", R.drawable.boissons),
+                Triple("Cafe", "Boissons", R.drawable.cafe),
 
                 Triple("Heureux", "Sentiments", R.drawable.heureux),
                 Triple("Triste", "Sentiments", R.drawable.triste),
@@ -119,7 +123,9 @@ class PecsViewModel(application: Application) : AndroidViewModel(application) {
                 Triple("Maman", "Famille", R.drawable.maman),
                 Triple("Papa", "Famille", R.drawable.papa),
                 Triple("Frère", "Famille", R.drawable.frere),
-                Triple("Sœur", "Famille", R.drawable.soeur)
+                Triple("Sœur", "Famille", R.drawable.soeur),
+                Triple("Grand-Pére", "Famille", R.drawable.grand_pere),
+                Triple("Grand-Mére", "Famille", R.drawable.grand_mere)
             )
 
             defaults.forEach { (name, cat, img) ->
@@ -197,10 +203,26 @@ class PecsViewModel(application: Application) : AndroidViewModel(application) {
 
         val sentence = words.joinToString(" ")
 
-        return if (addJeVeux.value) {
-            "Je veux $sentence"
-        } else {
-            sentence
+        val firstWord = words.firstOrNull() ?: ""
+
+        return when (firstWord) {
+
+            "Fatigué",
+            "Triste",
+            "Heureux",
+            "En colère" -> "Je suis $sentence"
+
+            else -> {
+                if (addJeVeux.value)
+                    "Je veux $sentence"
+                else
+                    sentence
+            }
+        }
+    }
+    fun clearHistory() {
+        viewModelScope.launch {
+            historyDao.deleteAll()
         }
     }
 
